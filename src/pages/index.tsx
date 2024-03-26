@@ -41,10 +41,7 @@ export default function Home() {
           </div>
         </div>
         <div className="absolute bottom-16 left-1/2 -translate-x-1/2 transform">
-          <FaArrowDown
-            className="animate-bounce text-3xl"
-            onClick={scrollToNextPane}
-          />
+          <FaArrowDown className="animate-bounce text-3xl" />
         </div>
       </div>
       <div
