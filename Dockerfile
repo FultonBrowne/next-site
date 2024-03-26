@@ -1,7 +1,7 @@
 # Step 1: Build your Next.js application
 # Use the official lightweight Node.js 16 image.
 # https://hub.docker.com/_/node
-FROM node:16-alpine as builder
+FROM node:19-alpine as builder
 
 # Set the working directory
 WORKDIR /app
@@ -24,7 +24,7 @@ RUN npm run build
 
 # Step 2: Serve the Next.js application using a Node.js server
 # Use the official lightweight Node.js 16 image.
-FROM node:16-alpine
+FROM node:19-alpine
 
 # Set the working directory
 WORKDIR /app
