@@ -22,22 +22,6 @@ COPY . .
 # Build your Next.js application for production.
 RUN npm run build
 
-# Step 2: Serve the Next.js application using a Node.js server
-# Use the official lightweight Node.js 16 image.
-FROM node:19-alpine
-
-# Set the working directory
-WORKDIR /app
-
-# Copy the built Next.js application from the previous stage
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json ./package.json
-
-# Install production dependencies only
-RUN npm install next
-
-# Expose the port the app runs on
 EXPOSE 3000
 
 # Run your Next.js app
