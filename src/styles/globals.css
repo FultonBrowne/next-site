@@ -2,19 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --foreground-rgb: 58, 30, 11; /* Dark brown for text, like ground coffee */
-    --background-start: 247, 230,
-        203 /* Light latte cream color */ --accent-rgb: 111, 78, 55; /* Medium espresso shot color for accents */
-}
+/* :root {
+    --foreground-rgb: 58, 30, 11;
+    --background-start: 40, 42, 54;
+    --accent-rgb: 111, 78, 55;
+} */
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --foreground-rgb: 255, 247, 235; /* Creamy off-white for dark mode text */
-        --background-start: 33, 24, 21; /* Very dark brown, like a rich espresso */
-        --accent-rgb: 142, 105, 89; /* Warm brown, good for highlights or buttons in dark mode */
-    }
+/* @media (prefers-color-scheme: dark) { */
+:root {
+    --foreground-rgb: 248, 248, 242;
+    --background-start: 40, 42, 54;
+    --accent-rgb: 139, 233, 253;
 }
+.title {
+    color: rgb(var(--accent-rgb));
+}
+/* } */
 
 body {
     color: rgb(var(--foreground-rgb));
