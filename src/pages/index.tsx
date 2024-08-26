@@ -32,7 +32,7 @@ export default function Home() {
             <br /> A student and software engineer looking to make the world a
             better place
           </div>
-          <div className="mt-4 flex gap-2  text-xl">
+          <div className="mt-4 flex gap-2 w-full justify-center lg:justify-start text-xl">
             <FaGithubAlt
               className="cursor-pointer"
               onClick={() => window.open("https://github.com/FultonBrowne")}
