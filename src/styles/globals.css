@@ -2,22 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-    --foreground-rgb: 58, 30, 11;
-    --background-start: 40, 42, 54;
-    --accent-rgb: 111, 78, 55;
-} */
-
-/* @media (prefers-color-scheme: dark) { */
 :root {
-    --foreground-rgb: 0, 0, 0;
-    --background-start: 256, 256, 256;
-    --accent-rgb: 139, 233, 253;
+    --foreground-rgb: 34, 49, 34; /* Dark Green */
+    --background-start: 255, 239, 213; /* Lighter Tan */
+    --accent-rgb: 85, 107, 47; /* Olive Drab */
 }
+
 .title {
     color: rgb(var(--accent-rgb));
 }
-/* } */
 
 body {
     color: rgb(var(--foreground-rgb));

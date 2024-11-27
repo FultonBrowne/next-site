@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, MouseEvent } from "react";
 import { Inter, Darker_Grotesque } from "next/font/google";
 import Image from "next/image";
 import { FaGithubAlt, FaLinkedin, FaRss, FaTwitter } from "react-icons/fa6";
@@ -11,22 +11,26 @@ const darkerGrotesque = Darker_Grotesque({
   subsets: ["latin"],
 });
 
-export default function Home() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const spotlightRadius = 200;
+interface MousePosition {
+  x: number;
+  y: number;
+}
 
-  const items = [
-    "Hiker🚶‍♂️",
-    "Software Engineer👨‍💻",
-    "Photographer📸",
-    "Designer🎨",
-  ];
-
-  const [displayText, setDisplayText] = useState(items[0]);
-  const [currentItemIndex, setCurrentItemIndex] = useState(0);
+export default function Home(): JSX.Element {
+  const [displayText, setDisplayText] = useState<string>("Hiker🚶‍♂️");
+  const [currentItemIndex, setCurrentItemIndex] = useState<number>(0);
+  const [showHello, setShowHello] = useState<boolean>(true);
+  const [showContent, setShowContent] = useState<boolean>(false);
 
   useEffect(() => {
-    const transitionToNextItem = () => {
+    const items: string[] = [
+      "Hiker🚶‍♂️",
+      "Software Engineer👨‍💻",
+      "Photographer📸",
+      "Designer🎨",
+      "Nerd🤓",
+    ];
+    const transitionToNextItem = (): void => {
       const nextItemIndex = (currentItemIndex + 1) % items.length;
       const nextItem = items[nextItemIndex];
       animateTextChange(displayText, nextItem, setDisplayText);
@@ -35,12 +39,16 @@ export default function Home() {
 
     const interval = setInterval(() => {
       transitionToNextItem();
-    }, 2000); // Change every 2 seconds
+    }, 2000);
 
     return () => clearInterval(interval);
-  }, [currentItemIndex, items, displayText]);
+  }, [currentItemIndex, displayText]);
 
-  const animateTextChange = (from, to, updateText) => {
+  const animateTextChange = (
+    from: string,
+    to: string,
+    updateText: React.Dispatch<React.SetStateAction<string>>,
+  ): void => {
     const maxLength = Math.max(from.length, to.length);
     let currentText = from;
     let animationFrame = 0;
@@ -64,43 +72,54 @@ export default function Home() {
       } else {
         updateText(newText);
       }
-    }, 50); // Speed of the animation
+    }, 50);
   };
 
-  const handleMouseMove = (e) => {
-    setMousePos({ x: e.clientX, y: e.clientY });
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowHello(false);
+      setTimeout(() => {
+        setShowContent(true);
+      }, 50); // Delay to allow "Hello There" to fade out before showing content
+    }, 1000); // Duration to show "Hello There"
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <main
-      onMouseMove={handleMouseMove}
       className={`${inter.className} w-full min-h-screen flex items-center justify-center relative`}
     >
       {/* Background Text */}
       <div
-        className={`-z-10 absolute text-zinc-400 font-black text-[30vh] leading-none text-left w-full ${darkerGrotesque.className}`}
-        style={{
-          WebkitMaskImage: `radial-gradient(circle ${spotlightRadius}px at ${
-            mousePos.x
-          }px ${mousePos.y - spotlightRadius / 2}px, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 50%)`,
-          maskImage: `radial-gradient(circle ${spotlightRadius}px at ${
-            mousePos.x
-          }px ${mousePos.y - spotlightRadius / 2}px, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 50%)`,
-          WebkitMaskRepeat: "no-repeat",
-          maskRepeat: "no-repeat",
-        }}
+        className={`-z-10 absolute text-zinc-400 font-black text-9xl leading-none ${darkerGrotesque.className} transition-opacity duration-500 ${
+          showHello ? "opacity-100" : "opacity-0"
+        }`}
       >
-        Hello <br /> There
+        Hello There
       </div>
 
       {/* Foreground Content */}
-      <div className="flex flex-col items-center gap-4">
+      <div
+        className={`flex flex-col items-center gap-4 transition-opacity duration-1000 ${
+          showContent ? "opacity-100" : "opacity-0"
+        }`}
+      >
         {/* Card */}
         <div
-          className="p-6 bg-white shadow-lg flex flex-col rounded-lg border border-zinc-200 text-center items-center min-w-[600px]"
-          style={{ backdropFilter: "blur(5px)" }}
+          className="p-6 bg-white shadow-lg flex flex-col rounded-lg border accent-border text-center items-center min-w-[600px]"
+          style={{
+            backdropFilter: "blur(5px)",
+            backgroundColor: "rgba(255, 239, 213, 0.8)",
+          }}
         >
-          <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-zinc-200">
+          <div
+            className="w-32 h-32 rounded-full overflow-hidden border-4"
+            style={{
+              backgroundColor: "rgba(255, 239, 213, 0.8)",
+              borderColor: "rgb(85, 107, 47)",
+            }}
+          >
             <Image
               src="/me.svg"
               alt="Me"
@@ -109,7 +128,10 @@ export default function Home() {
               className="w-full h-full object-cover"
             />
           </div>
-          <h1 className="text-2xl font-bold text-zinc-800">
+          <h1
+            className="text-2xl font-bold"
+            style={{ color: "rgb(var(--foreground-rgb))" }}
+          >
             I{"'"}m Fulton Browne
           </h1>
           <div className="flex gap-2">
@@ -136,7 +158,12 @@ export default function Home() {
               }
             />
           </div>
-          <h1 className="text-lg text-zinc-800">{displayText}</h1>
+          <h1
+            className="text-lg"
+            style={{ color: "rgb(var(--foreground-rgb))" }}
+          >
+            {displayText}
+          </h1>
         </div>
       </div>
     </main>
