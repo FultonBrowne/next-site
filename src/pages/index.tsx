@@ -1,63 +1,47 @@
-import React, { useRef } from "react"; // Import useRef
-import Image from "next/image";
-import {
-  FaArrowDown,
-  FaGithubAlt,
-  FaLinkedin,
-  FaRss,
-  FaTwitter,
-} from "react-icons/fa";
-import { Kanit, Open_Sans } from "next/font/google";
-import { FaBlog } from "react-icons/fa6";
+import React, { useState } from "react";
+import { Inter, Darker_Grotesque } from "next/font/google";
 
-const kantit = Kanit({
-  subsets: ["latin"],
-  weight: "700",
-});
-const openSans = Open_Sans({
+const inter = Inter({
   subsets: ["latin"],
 });
+
+const darkerGrotesque = Darker_Grotesque({
+  subsets: ["latin"],
+});
+
 export default function Home() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const spotlightRadius = 200; // Radius of the spotlight
+
+  // Update mouse position on mousemove
+  const handleMouseMove = (e) => {
+    setMousePos({ x: e.clientX, y: e.clientY });
+  };
+
   return (
-    <main className={`${openSans.className}`}>
+    <main
+      onMouseMove={handleMouseMove}
+      className={`${inter.className} w-full min-h-screen flex items-center justify-center relative`}
+    >
+      {/* Background Text */}
       <div
-        className={`flex min-h-screen items-center p-4 justify-center md:justify-start md:p-24`}
+        className={`-z-10 absolute text-zinc-400 font-black text-[30vh] leading-none text-left w-full ${darkerGrotesque.className}`}
+        style={{
+          WebkitMaskImage: `radial-gradient(circle ${spotlightRadius}px at ${
+            mousePos.x
+          }px ${mousePos.y - spotlightRadius / 2}px, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 50%)`,
+          maskImage: `radial-gradient(circle ${spotlightRadius}px at ${
+            mousePos.x
+          }px ${mousePos.y - spotlightRadius / 2}px, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 50%)`,
+          WebkitMaskRepeat: "no-repeat",
+          maskRepeat: "no-repeat",
+        }}
       >
-        <div className="w-full text-center lg:text-start lg:w-1/3">
-          <div className={`text-7xl md:text-9xl ${kantit.className}`}>
-            Hello <br className="hidden lg:block" /> there,
-          </div>
-          <div className="mt-4 text-xs md:text-xl">
-            I{"'"}m <span className="title italic">Fulton Browne,</span>
-            <br /> A student and software engineer looking to make the world a
-            better place
-          </div>
-          <div className="mt-4 flex gap-2 w-full justify-center lg:justify-start text-xl">
-            <FaGithubAlt
-              className="cursor-pointer"
-              onClick={() => window.open("https://github.com/FultonBrowne")}
-            />
-            <FaTwitter
-              className="cursor-pointer"
-              onClick={() => window.open("https://twitter.com/BrowneFulton")}
-            />
-            <FaLinkedin
-              className="cursor-pointer"
-              onClick={() =>
-                window.open(
-                  "https://www.linkedin.com/in/fulton-browne-925a20245/",
-                )
-              }
-            />
-            <FaRss
-              className="cursor-pointer"
-              onClick={() =>
-                window.open("https://fultonsramblings.substack.com/")
-              }
-            />
-          </div>
-        </div>
+        Hello <br /> There
       </div>
+
+      {/* Foreground Content */}
+      <div>I{"'"}m Fulton Browne</div>
     </main>
   );
 }
