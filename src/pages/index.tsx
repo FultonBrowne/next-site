@@ -28,6 +28,7 @@ export default function Home(): JSX.Element {
       "Software Engineer👨‍💻",
       "Photographer📸",
       "Designer🎨",
+      "Student📓",
       "Nerd🤓",
     ];
     const transitionToNextItem = (): void => {
@@ -92,7 +93,7 @@ export default function Home(): JSX.Element {
     >
       {/* Background Text */}
       <div
-        className={`-z-10 absolute text-zinc-400 font-black text-9xl leading-none ${darkerGrotesque.className} transition-opacity duration-500 ${
+        className={`-z-10 absolute font-black text-5xl leading-none ${darkerGrotesque.className} transition-opacity duration-500 ${
           showHello ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -107,7 +108,7 @@ export default function Home(): JSX.Element {
       >
         {/* Card */}
         <div
-          className="p-6 bg-white shadow-lg flex flex-col rounded-lg border accent-border text-center items-center min-w-[600px]"
+          className="p-6 bg-white shadow-lg flex flex-col rounded-lg border accent-border text-center items-center md:min-w-[600px] m-4"
           style={{
             backdropFilter: "blur(5px)",
             backgroundColor: "rgba(255, 239, 213, 0.8)",
@@ -164,6 +165,37 @@ export default function Home(): JSX.Element {
           >
             {displayText}
           </h1>
+          <div className="md:max-w-[400px]">
+            My goal is to build a better world using creativity and code. My
+            interests and skills are mostly low level, AI, full-stack web, and
+            computer architecture. My past and current work includes{" "}
+            <a href="https://healthindustries.com/" className="font-bold">
+              Cofounding Health Industries
+            </a>
+            ,{""}{" "}
+            <a
+              href="https://github.com/FultonBrowne/LiDAR-Depth-Map-Capture-for-iOS"
+              className="font-bold"
+            >
+              Building LIDAR systems for bike safety
+            </a>
+            , and{" "}
+            <a
+              href="https://github.com/FultonBrowne/aiserv"
+              className="font-bold"
+            >
+              Building an ai server in rust
+            </a>
+            . I{"'"}ve worked on dozens of other proects that are all on my{" "}
+            <a href="https://github.com/FultonBrowne/" className="font-bold">
+              Github
+            </a>
+            . If you like what you see you can reach me{" "}
+            <a href="mailto:fultonbrowne@pm.me" className="font-bold">
+              over email
+            </a>
+            .
+          </div>
         </div>
       </div>
     </main>
