@@ -186,7 +186,7 @@ export default function Home(): JSX.Element {
             >
               Building an ai server in rust
             </a>
-            . I{"'"}ve worked on dozens of other proects that are all on my{" "}
+            . I{"'"}ve worked on dozens of other projects that are all on my{" "}
             <a href="https://github.com/FultonBrowne/" className="font-bold">
               Github
             </a>
