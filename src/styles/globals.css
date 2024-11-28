@@ -29,4 +29,8 @@ body {
         text-color: rgb(var(--background-start));
         color: rgb(var(--background-start));
     }
+
+    .bf-1 {
+        border-color: rgb(var(--foreground-rgb));
+    }
 }

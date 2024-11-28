@@ -1,7 +1,7 @@
 import React, { useState, useEffect, MouseEvent } from "react";
 import { Inter, Darker_Grotesque } from "next/font/google";
 import Image from "next/image";
-import { FaGithubAlt, FaLinkedin, FaRss, FaTwitter } from "react-icons/fa6";
+import { FaGithubAlt, FaLinkedin, FaRss, FaTwitter, FaUnsplash } from "react-icons/fa6";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -115,10 +115,9 @@ export default function Home(): JSX.Element {
           }}
         >
           <div
-            className="w-32 h-32 rounded-full overflow-hidden border-4"
+            className="w-32 h-32 rounded-full overflow-hidden border-2 bf-1"
             style={{
               backgroundColor: "rgba(255, 239, 213, 0.8)",
-              borderColor: "rgb(85, 107, 47)",
             }}
           >
             <Image
@@ -156,6 +155,12 @@ export default function Home(): JSX.Element {
               className="cursor-pointer"
               onClick={() =>
                 window.open("https://fultonsramblings.substack.com/")
+              }
+            />
+            <FaUnsplash
+              className="cursor-pointer"
+              onClick={() =>
+                window.open("https://unsplash.com/@fultonbrowne")
               }
             />
           </div>
