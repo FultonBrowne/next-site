@@ -1,4 +1,4 @@
-import React, { useState, useEffect, MouseEvent } from "react";
+import React, { useState, useEffect } from "react";
 import { Inter, Darker_Grotesque } from "next/font/google";
 import Image from "next/image";
 import { FaGithubAlt, FaLinkedin, FaRss, FaTwitter, FaUnsplash } from "react-icons/fa6";
@@ -11,16 +11,9 @@ const darkerGrotesque = Darker_Grotesque({
   subsets: ["latin"],
 });
 
-interface MousePosition {
-  x: number;
-  y: number;
-}
-
 export default function Home(): JSX.Element {
   const [displayText, setDisplayText] = useState<string>("Hiker🚶‍♂️");
   const [currentItemIndex, setCurrentItemIndex] = useState<number>(0);
-  const [showHello, setShowHello] = useState<boolean>(true);
-  const [showContent, setShowContent] = useState<boolean>(false);
 
   useEffect(() => {
     const items: string[] = [
@@ -59,10 +52,8 @@ export default function Home(): JSX.Element {
       for (let i = 0; i < maxLength; i++) {
         if (i < animationFrame) {
           newText += to[i] || ""; // Keep the final character if animationFrame exceeds length
-        } else if (i < from.length) {
-          newText += String.fromCharCode(Math.floor(Math.random() * 94) + 33); // Random ASCII characters for effect
         } else {
-          newText += String.fromCharCode(Math.floor(Math.random() * 94) + 33); // Random ASCII characters
+          newText += String.fromCharCode(Math.floor(Math.random() * 94) + 33); // Random ASCII characters for effect
         }
       }
 
@@ -76,36 +67,12 @@ export default function Home(): JSX.Element {
     }, 50);
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowHello(false);
-      setTimeout(() => {
-        setShowContent(true);
-      }, 50); // Delay to allow "Hello There" to fade out before showing content
-    }, 1000); // Duration to show "Hello There"
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <main
       className={`${inter.className} w-full min-h-screen flex items-center justify-center relative`}
     >
-      {/* Background Text */}
-      <div
-        className={`-z-10 absolute font-black text-5xl leading-none ${darkerGrotesque.className} transition-opacity duration-500 ${
-          showHello ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        Hello There
-      </div>
-
       {/* Foreground Content */}
-      <div
-        className={`flex flex-col items-center gap-4 transition-opacity duration-1000 ${
-          showContent ? "opacity-100" : "opacity-0"
-        }`}
-      >
+      <div className="flex flex-col items-center gap-4">
         {/* Card */}
         <div
           className="p-6 bg-white shadow-lg flex flex-col rounded-lg border accent-border text-center items-center md:min-w-[600px] m-4"
