@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Inter, Darker_Grotesque } from "next/font/google";
 import Image from "next/image";
-import { FaGithubAlt, FaLinkedin, FaRss, FaTwitter, FaUnsplash } from "react-icons/fa6";
+import {
+  FaGithubAlt,
+  FaLinkedin,
+  FaRss,
+  FaTwitter,
+  FaUnsplash,
+} from "react-icons/fa6";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -126,9 +132,7 @@ export default function Home(): JSX.Element {
             />
             <FaUnsplash
               className="cursor-pointer"
-              onClick={() =>
-                window.open("https://unsplash.com/@fultonbrowne")
-              }
+              onClick={() => window.open("https://unsplash.com/@fultonbrowne")}
             />
           </div>
           <h1

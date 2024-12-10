@@ -17,6 +17,14 @@ body {
     background: rgb(var(--background-start));
 }
 
+a {
+    text-decoration: underline;
+    /* 20% lighter on hover*/
+    &:hover {
+        color: rgb(var(--accent-rgb));
+    }
+}
+
 @layer utilities {
     .text-balance {
         text-wrap: balance;
