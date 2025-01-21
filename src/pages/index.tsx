@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Inter, Darker_Grotesque } from "next/font/google";
 import Image from "next/image";
+import svgFile from "../comps/me.svg";
 import {
   FaGithubAlt,
   FaLinkedin,
@@ -94,7 +95,7 @@ export default function Home(): JSX.Element {
             }}
           >
             <Image
-              src="/me.svg"
+              src={svgFile}
               alt="Me"
               width={80}
               height={80}
