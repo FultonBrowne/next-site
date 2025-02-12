@@ -2,10 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light mode - Latte */
 :root {
-    --foreground-rgb: 34, 49, 34; /* Dark Green */
-    --background-start: 255, 239, 213; /* Lighter Tan */
-    --accent-rgb: 85, 107, 47; /* Olive Drab */
+    --foreground-rgb: 76, 79, 105; /* Text */
+    --background-start: 239, 241, 245; /* Base */
+    --accent-rgb: 136, 57, 239; /* Mauve */
+    --light-color: 239, 241, 245;
+
+    /* Additional Catppuccin colors */
+    --surface-rgb: 204, 208, 218; /* Surface 0 */
+    --overlay-rgb: 156, 160, 176; /* Overlay 0 */
+    --lavender-rgb: 114, 135, 253; /* Lavender */
+    --rosewater-rgb: 220, 138, 120; /* Rosewater */
 }
 
 .title {
@@ -19,9 +27,10 @@ body {
 
 a {
     text-decoration: underline;
-    /* 20% lighter on hover*/
+    color: rgb(var(--accent-rgb));
+    transition: color 0.2s ease;
     &:hover {
-        color: rgb(var(--accent-rgb));
+        color: rgb(var(--lavender-rgb));
     }
 }
 
@@ -34,11 +43,9 @@ a {
     }
     .invert-txt {
         background-color: rgb(var(--foreground-rgb));
-        text-color: rgb(var(--background-start));
         color: rgb(var(--background-start));
     }
-
     .bf-1 {
-        border-color: rgb(var(--foreground-rgb));
+        border-color: rgb(var(--accent-rgb));
     }
 }

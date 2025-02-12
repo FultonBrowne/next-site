@@ -9,6 +9,7 @@ import {
   FaTwitter,
   FaUnsplash,
 } from "react-icons/fa6";
+import { MeIcon } from "@/comps/me";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -85,29 +86,19 @@ export default function Home(): JSX.Element {
           className="p-6 bg-white shadow-lg flex flex-col rounded-lg border accent-border text-center items-center md:min-w-[600px] m-4"
           style={{
             backdropFilter: "blur(5px)",
-            backgroundColor: "rgba(255, 239, 213, 0.8)",
+            backgroundColor: `rgba(var(--background-start), 0.8)`,
           }}
         >
           <div
-            className="w-32 h-32 rounded-full overflow-hidden border-2 bf-1"
+            className="w-32 h-32 rounded-full shadow-lg overflow-hidden border-2 bf-1 text-[rgb(var(--accent-rgb))] mb-4"
             style={{
-              backgroundColor: "rgba(255, 239, 213, 0.8)",
+              backgroundColor: `rgba(var(--background-start), 0.8)`,
+              color: `rgb(var(--accent-rgb))`, // This will control the SVG color
             }}
           >
-            <Image
-              src={svgFile}
-              alt="Me"
-              width={80}
-              height={80}
-              className="w-full h-full object-cover"
-            />
+            <MeIcon />
           </div>
-          <h1
-            className="text-2xl font-bold"
-            style={{ color: "rgb(var(--foreground-rgb))" }}
-          >
-            I{"'"}m Fulton Browne
-          </h1>
+          <h1 className="text-2xl font-bold">I{"'"}m Fulton Browne</h1>
           <div className="flex gap-2">
             <FaGithubAlt
               className="cursor-pointer"
@@ -146,10 +137,14 @@ export default function Home(): JSX.Element {
             My goal is to build a better world using creativity and code. My
             interests and skills are mostly low level, AI, full-stack web, and
             computer architecture. My past and current work includes{" "}
+            <a href="https://bankerbounty.com" className="font-bold">
+              Building backend at BankerBounty
+            </a>
+            ,{" "}
             <a href="https://healthindustries.com/" className="font-bold">
               Cofounding Health Industries
             </a>
-            ,{""}{" "}
+            ,{" "}
             <a
               href="https://github.com/FultonBrowne/LiDAR-Depth-Map-Capture-for-iOS"
               className="font-bold"
