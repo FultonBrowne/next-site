@@ -26,11 +26,11 @@ export default function Home(): JSX.Element {
   useEffect(() => {
     const items: string[] = [
       "Hiker🚶‍♂️",
-      "Software Engineer👨‍💻",
-      "Photographer📸",
-      "Designer🎨",
-      "Student📓",
-      "Nerd🤓",
+      "Software Engineer 👨‍💻",
+      "Photographer 📸",
+      "Designer 🎨",
+      "Student 📓",
+      "Nerd 🤓",
     ];
     const transitionToNextItem = (): void => {
       const nextItemIndex = (currentItemIndex + 1) % items.length;
@@ -55,13 +55,18 @@ export default function Home(): JSX.Element {
     let currentText = from;
     let animationFrame = 0;
 
+    // Define the characters to use for the random effect
+    const chars =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ";
+
     const interval = setInterval(() => {
       let newText = "";
       for (let i = 0; i < maxLength; i++) {
         if (i < animationFrame) {
           newText += to[i] || ""; // Keep the final character if animationFrame exceeds length
         } else {
-          newText += String.fromCharCode(Math.floor(Math.random() * 94) + 33); // Random ASCII characters for effect
+          // Get a random character from the chars string
+          newText += chars[Math.floor(Math.random() * chars.length)];
         }
       }
 
