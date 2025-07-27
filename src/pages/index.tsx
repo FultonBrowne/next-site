@@ -49,7 +49,7 @@ export default function Home(): JSX.Element {
   const animateTextChange = (
     from: string,
     to: string,
-    updateText: React.Dispatch<React.SetStateAction<string>>,
+    updateText: React.Dispatch<React.SetStateAction<string>>
   ): void => {
     const maxLength = Math.max(from.length, to.length);
     let currentText = from;
@@ -117,7 +117,7 @@ export default function Home(): JSX.Element {
               className="cursor-pointer"
               onClick={() =>
                 window.open(
-                  "https://www.linkedin.com/in/fulton-browne-925a20245/",
+                  "https://www.linkedin.com/in/fulton-browne-925a20245/"
                 )
               }
             />
@@ -142,6 +142,10 @@ export default function Home(): JSX.Element {
             My goal is to build a better world using creativity and code. My
             interests and skills are mostly low level, AI, full-stack web, and
             computer architecture. My past and current work includes{" "}
+            <a href="https://shurburt.com" className="font-bold">
+              Running all things tech at Shurburt
+            </a>
+            ,{" "}
             <a href="https://bankerbounty.com" className="font-bold">
               Building backend at BankerBounty
             </a>
